@@ -3,199 +3,983 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Princess ❤️</title>
+<meta name="theme-color" content="#8f244d">
+<title>Seven Years With You — Princess ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+    --wine:#8f244d;
+    --wine-dark:#5e1735;
+    --rose:#dc668e;
+    --blush:#fff1f5;
+    --cream:#fffaf7;
+    --gold:#e7b56e;
+    --ink:#412532;
+    --muted:#765d68;
+    --white:#ffffff;
+    --shadow:0 24px 70px rgba(91,24,54,.23);
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
 }
 
+html{scroll-behavior:smooth;}
+
 body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
+    min-height:100vh;
+    color:var(--ink);
+    background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.65), transparent 25%),
+        radial-gradient(circle at 90% 85%, rgba(255,211,226,.65), transparent 30%),
+        linear-gradient(145deg,#ffe4ec 0%,#f7b9cc 43%,#ad3562 100%);
+    font-family:'DM Sans',sans-serif;
+    overflow-x:hidden;
+}
+
+button,input,select,textarea{font:inherit;}
+button{border:0;}
+
+.page{
+    min-height:100vh;
+    position:relative;
+    isolation:isolate;
+}
+
+.page::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    opacity:.16;
+    background-image:url("data:image/svg+xml,%3Csvg width='70' height='70' viewBox='0 0 70 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M35 49S18 39 18 27c0-8 10-11 17-3 7-8 17-5 17 3 0 12-17 22-17 22Z' fill='%23ffffff'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.screen{
+    display:none;
+    min-height:100vh;
+    padding:32px 18px;
     align-items:center;
-    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    justify-content:center;
+}
+
+.screen.active{display:flex;animation:reveal .7s ease both;}
+
+@keyframes reveal{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* LOGIN */
+.login-shell{
+    width:min(960px,100%);
+    min-height:610px;
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    border:1px solid rgba(255,255,255,.58);
+    border-radius:34px;
+    background:rgba(255,255,255,.3);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    box-shadow:var(--shadow);
     overflow:hidden;
 }
 
-.card{
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(15px);
-    padding:40px;
-    border-radius:25px;
-    text-align:center;
-    width:90%;
-    max-width:420px;
+.love-panel{
+    min-height:610px;
+    padding:55px;
     color:white;
-    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     position:relative;
-    animation: fadeIn 1.5s ease;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 15%,rgba(255,255,255,.25),transparent 22%),
+        linear-gradient(155deg,rgba(111,21,58,.97),rgba(197,57,104,.9));
 }
 
-h1{
-    font-size:24px;
-    margin-bottom:15px;
+.love-panel::after{
+    content:"7";
+    position:absolute;
+    right:-15px;
+    bottom:-100px;
+    font:700 390px/1 'Playfair Display',serif;
+    color:rgba(255,255,255,.08);
 }
 
-p{
-    font-size:15px;
-    margin-bottom:18px;
-    font-weight:300;
-    line-height:1.6;
+.mini-mark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-size:12px;
 }
 
-button{
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    margin:10px;
-    font-size:15px;
-    cursor:pointer;
-    transition:0.3s ease;
-}
-
-.yes{
+.mini-mark span{
+    width:32px;
+    height:32px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    color:var(--wine);
     background:white;
-    color:#ff4e8a;
+}
+
+.hero-copy{position:relative;z-index:1;}
+
+.eyebrow{
+    margin-bottom:14px;
+    color:#ffe3ed;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+}
+
+.hero-copy h1{
+    max-width:430px;
+    font:600 clamp(42px,6vw,69px)/.98 'Playfair Display',serif;
+    letter-spacing:-.035em;
+}
+
+.hero-copy h1 em{
+    display:block;
+    color:#ffd9a5;
     font-weight:600;
 }
 
-.yes:hover{
-    transform:scale(1.1);
+.hero-copy p{
+    max-width:390px;
+    margin-top:24px;
+    color:rgba(255,255,255,.82);
+    line-height:1.75;
 }
 
-.no{
-    background:rgba(255,255,255,0.4);
-    color:white;
+.since{
+    position:relative;
+    z-index:1;
+    font-size:13px;
+    color:rgba(255,255,255,.7);
+}
+
+.login-panel{
+    padding:52px 46px;
+    background:rgba(255,250,247,.94);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.crown{
+    width:54px;
+    height:54px;
+    margin-bottom:22px;
+    display:grid;
+    place-items:center;
+    border-radius:18px;
+    font-size:26px;
+    background:linear-gradient(145deg,#fff0c9,#edb45c);
+    box-shadow:0 12px 30px rgba(171,103,27,.18);
+}
+
+.login-panel h2{
+    font:700 34px/1.15 'Playfair Display',serif;
+    color:var(--wine-dark);
+}
+
+.login-panel .intro{
+    margin:10px 0 28px;
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.field{margin-bottom:16px;}
+
+.field label{
+    display:block;
+    margin:0 0 8px 3px;
+    color:var(--wine-dark);
+    font-size:13px;
+    font-weight:700;
+}
+
+.input-wrap{position:relative;}
+
+.input-wrap .icon{
     position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
+.field input,.field select,.field textarea{
+    width:100%;
+    border:1.5px solid #ead7de;
+    border-radius:15px;
+    outline:none;
+    color:var(--ink);
+    background:white;
+    transition:.2s ease;
+}
+
+.field input,.field select{height:52px;padding:0 16px;}
+.input-wrap input{padding-left:46px;}
+.field textarea{min-height:98px;padding:14px 16px;resize:vertical;}
+
+.field input:focus,.field select:focus,.field textarea:focus{
+    border-color:var(--rose);
+    box-shadow:0 0 0 4px rgba(220,102,142,.11);
+}
+
+.login-btn,.primary-btn,.secondary-btn{
+    min-height:52px;
+    border-radius:16px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.25s ease;
+}
+
+.login-btn,.primary-btn{
+    color:white;
+    background:linear-gradient(135deg,var(--wine),#cf4e7c);
+    box-shadow:0 12px 28px rgba(143,36,77,.25);
+}
+
+.login-btn{width:100%;margin-top:5px;}
+.login-btn:hover,.primary-btn:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(143,36,77,.3);}
+
+.login-hint{
+    margin-top:18px;
+    padding:10px 12px;
+    border:1px dashed #e7c5d1;
+    border-radius:12px;
+    color:#94727f;
+    background:#fff7fa;
+    font-size:12px;
+    text-align:center;
+}
+
+.error{
+    min-height:20px;
+    margin:8px 0 0;
+    color:#b51f4f;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* MAIN INVITATION */
+#invitationScreen{align-items:flex-start;}
+
+.invitation{
+    width:min(920px,100%);
+    margin:auto;
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:34px;
+    background:rgba(255,250,247,.95);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+}
+
+.invite-hero{
+    min-height:460px;
+    padding:64px 54px;
+    color:white;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 12% 10%,rgba(255,255,255,.22),transparent 20%),
+        radial-gradient(circle at 88% 88%,rgba(255,214,230,.2),transparent 25%),
+        linear-gradient(145deg,#5b1837,#a52e59 55%,#df7198);
+}
+
+.invite-hero::before,.invite-hero::after{
+    content:"";
+    position:absolute;
+    width:210px;
+    height:210px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:50%;
+}
+
+.invite-hero::before{top:-95px;left:-70px;}
+.invite-hero::after{right:-80px;bottom:-100px;width:280px;height:280px;}
+
+.anniversary-pill{
+    padding:9px 16px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,.32);
+    border-radius:999px;
+    color:#ffe7ef;
+    background:rgba(255,255,255,.1);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+}
+
+.invite-hero h1{
+    max-width:720px;
+    font:600 clamp(42px,7vw,72px)/1.04 'Playfair Display',serif;
+}
+
+.invite-hero h1 span{color:#ffd9a5;font-style:italic;}
+
+.invite-hero .sub{
+    max-width:620px;
+    margin-top:23px;
+    color:rgba(255,255,255,.82);
+    font-size:16px;
+    line-height:1.8;
+}
+
+.scroll-cue{
+    margin-top:30px;
+    color:#ffd8e6;
+    font-size:13px;
+    animation:bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob{50%{transform:translateY(6px);}}
+
+.letter{
+    padding:58px clamp(24px,7vw,75px) 48px;
+    text-align:center;
+}
+
+.section-kicker{
+    color:var(--rose);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+}
+
+.letter h2,.date-form h2,.success-card h2{
+    margin:10px 0 24px;
+    color:var(--wine-dark);
+    font:700 clamp(31px,5vw,45px)/1.12 'Playfair Display',serif;
+}
+
+.letter-copy{
+    max-width:680px;
+    margin:auto;
+    color:#614754;
+    font:500 17px/1.95 'Playfair Display',serif;
+}
+
+.letter-copy p+p{margin-top:19px;}
+
+.signature{
+    margin-top:30px;
+    color:var(--wine);
+    font:600 27px/1.2 'Playfair Display',serif;
+    font-style:italic;
+}
+
+.seven-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    padding:0 clamp(24px,7vw,75px) 55px;
+}
+
+.memory{
+    min-height:140px;
+    padding:20px 16px;
+    border:1px solid #f0dce3;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#fff,#fff5f8);
+}
+
+.memory:first-child{grid-column:span 2;}
+.memory:last-child{grid-column:span 2;}
+.memory .emoji{font-size:28px;margin-bottom:9px;}
+.memory strong{color:var(--wine-dark);font-family:'Playfair Display',serif;font-size:18px;}
+.memory small{margin-top:5px;color:var(--muted);text-align:center;line-height:1.45;}
+
+.date-form{
+    padding:58px clamp(24px,7vw,75px) 68px;
+    border-top:1px solid #f0dbe2;
+    background:linear-gradient(180deg,#fff8fa,#fff);
+}
+
+.date-form .heading{text-align:center;margin-bottom:34px;}
+.date-form .heading p{color:var(--muted);}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
+}
+
+.full{grid-column:1/-1;}
+
+.food-label{
+    display:block;
+    margin:3px 0 11px;
+    color:var(--wine-dark);
+    font-size:13px;
+    font-weight:700;
+}
+
+.food-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:11px;
+}
+
+.food-option{position:relative;}
+.food-option input{position:absolute;opacity:0;pointer-events:none;}
+
+.food-option label{
+    min-height:102px;
+    padding:14px 8px;
+    border:1.5px solid #ead7de;
+    border-radius:17px;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    color:#71535f;
+    background:white;
+    transition:.2s ease;
+    text-align:center;
+}
+
+.food-option label span{font-size:25px;}
+.food-option label b{font-size:13px;}
+.food-option input:checked+label{
+    color:var(--wine-dark);
+    border-color:var(--rose);
+    background:#fff0f5;
+    box-shadow:0 7px 22px rgba(189,64,109,.12);
+    transform:translateY(-2px);
+}
+
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:28px;
+}
+
+.primary-btn,.secondary-btn{padding:0 24px;}
+
+.secondary-btn{
+    color:var(--wine);
+    border:1.5px solid #e8cbd6;
+    background:white;
+}
+
+.secondary-btn:hover{background:#fff2f6;transform:translateY(-2px);}
+
+.form-note{
+    margin-top:16px;
+    color:#9a7e89;
+    font-size:12px;
+    text-align:center;
+}
+
+/* SUCCESS */
+.success-card{
+    width:min(620px,100%);
+    padding:48px clamp(23px,7vw,55px);
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:32px;
+    color:var(--ink);
+    background:rgba(255,250,247,.96);
+    box-shadow:var(--shadow);
+    text-align:center;
+}
+
+.success-icon{
+    width:78px;
+    height:78px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:38px;
+    background:linear-gradient(145deg,#ffedf3,#ffc4d6);
+    animation:pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse{50%{transform:scale(1.06);}}
+
+.summary{
+    margin:25px 0;
+    padding:20px;
+    border:1px solid #eed6df;
+    border-radius:18px;
+    background:#fff5f8;
+    text-align:left;
+    line-height:1.75;
+}
+
+.summary strong{color:var(--wine-dark);}
+.success-card>p{color:var(--muted);line-height:1.7;}
+
+/* FLOATING UI */
+.music-btn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:50;
+    min-height:46px;
+    padding:0 17px;
+    border-radius:999px;
+    color:var(--wine);
+    background:white;
+    box-shadow:0 8px 25px rgba(75,18,43,.22);
+    cursor:pointer;
+    font-weight:700;
 }
 
 .heart{
-    position:absolute;
-    color:white;
-    font-size:20px;
-    animation: float 6s linear infinite;
+    position:fixed;
+    bottom:-30px;
+    z-index:-1;
+    pointer-events:none;
+    color:rgba(255,255,255,.72);
+    animation:floatUp linear forwards;
 }
 
-@keyframes float{
-    0%{transform:translateY(100vh); opacity:0;}
-    50%{opacity:1;}
-    100%{transform:translateY(-10vh); opacity:0;}
+@keyframes floatUp{
+    0%{transform:translateY(0) rotate(0);opacity:0;}
+    15%{opacity:.8;}
+    100%{transform:translateY(-115vh) rotate(28deg);opacity:0;}
+}
+
+.shake{animation:shake .35s ease;}
+@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}
+
+@media(max-width:760px){
+    .screen{padding:14px;}
+    .login-shell{grid-template-columns:1fr;border-radius:25px;}
+    .love-panel{min-height:280px;padding:34px 28px;}
+    .love-panel .mini-mark{margin-bottom:48px;}
+    .hero-copy h1{font-size:45px;}
+    .hero-copy p{display:none;}
+    .love-panel::after{font-size:230px;bottom:-63px;}
+    .login-panel{padding:35px 27px 38px;}
+    .invitation{border-radius:25px;}
+    .invite-hero{min-height:410px;padding:45px 25px;}
+    .seven-grid{grid-template-columns:1fr 1fr;}
+    .memory:first-child,.memory:last-child{grid-column:span 1;}
+    .form-grid{grid-template-columns:1fr;}
+    .full{grid-column:auto;}
+    .food-grid{grid-template-columns:1fr 1fr;}
+    .actions{flex-direction:column;}
+    .primary-btn,.secondary-btn{width:100%;}
+}
+
+@media(max-width:410px){
+    .hero-copy h1{font-size:39px;}
+    .food-grid{grid-template-columns:1fr;}
+    .food-option label{min-height:74px;flex-direction:row;}
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;}
 }
 </style>
 </head>
 
 <body>
+<main class="page">
+    <section class="screen active" id="loginScreen">
+        <div class="login-shell">
+            <div class="love-panel">
+                <div class="mini-mark"><span>♥</span> Our little corner</div>
 
-<div class="card">
-    <h1>Happy Valentine’s Day 👑 Princess ❤️</h1>
+                <div class="hero-copy">
+                    <div class="eyebrow">July 20, 2019 — Forever</div>
+                    <h1>Seven years, <em>one beautiful love.</em></h1>
+                    <p>A private invitation made especially for the woman who has made every ordinary day feel like home.</p>
+                </div>
 
-    <p>
-        Princess, you are my favorite notification,  
-        my best good morning,  
-        and my most peaceful good night.
-    </p>
+                <div class="since">Jhon + Princess · Est. 2019</div>
+            </div>
 
-    <p>
-        You make my ordinary days feel magical.  
-        I’m grateful for your smile, your laugh,  
-        and the way you make my world brighter.
-    </p>
+            <div class="login-panel" id="loginPanel">
+                <div class="crown">👑</div>
+                <h2>Welcome, Princess</h2>
+                <p class="intro">There’s something waiting for you. Enter our little secret to open it.</p>
 
-    <p>
-        Will you be my forever Valentine? 💖
-    </p>
+                <form id="loginForm">
+                    <div class="field">
+                        <label for="username">Your name</label>
+                        <div class="input-wrap">
+                            <span class="icon">♡</span>
+                            <input id="username" type="text" placeholder="Enter your name" autocomplete="username" required>
+                        </div>
+                    </div>
 
-    <button class="yes" onclick="sayYes()">Yes 💕</button>
-    <button class="no" id="noBtn">No 😢</button>
-</div>
+                    <div class="field">
+                        <label for="password">Our special date</label>
+                        <div class="input-wrap">
+                            <span class="icon">🔐</span>
+                            <input id="password" type="password" placeholder="Enter our secret" autocomplete="current-password" required>
+                        </div>
+                    </div>
+
+                    <button class="login-btn" type="submit">Open my surprise ♥</button>
+                    <div class="error" id="loginError" role="alert"></div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="screen" id="invitationScreen">
+        <article class="invitation">
+            <header class="invite-hero">
+                <div class="anniversary-pill">Our 7th Anniversary</div>
+                <h1>To my favorite person, <span>Princess</span></h1>
+                <p class="sub">Seven years, countless memories, and still—if I had to choose all over again, I would always choose you.</p>
+                <div class="scroll-cue">A letter for you ↓</div>
+            </header>
+
+            <section class="letter">
+                <div class="section-kicker">From my heart</div>
+                <h2>Seven years with you</h2>
+
+                <div class="letter-copy">
+                    <p>
+                        Princess, seven years ago we began a story that became the most beautiful part of my life.
+                        We have shared laughter, quiet moments, challenges, dreams, and so many ordinary days that
+                        became special simply because I spent them with you.
+                    </p>
+                    <p>
+                        Thank you for being my peace when life gets loud, my strength when days get difficult,
+                        and my happiness in ways both big and small. I may not always have the perfect words,
+                        but I hope you always feel how deeply you are loved.
+                    </p>
+                    <p>
+                        On our seventh anniversary, I don’t need a grand promise. I just want to keep choosing you,
+                        growing with you, laughing with you, and making more memories—one beautiful day at a time.
+                    </p>
+                </div>
+
+                <div class="signature">Always yours, Jhon ♥</div>
+            </section>
+
+            <section class="seven-grid" aria-label="Seven years of us">
+                <div class="memory"><div class="emoji">🗓️</div><strong>7 Years</strong><small>of choosing each other</small></div>
+                <div class="memory"><div class="emoji">♾️</div><strong>Countless</strong><small>memories together</small></div>
+                <div class="memory"><div class="emoji">🏡</div><strong>One Home</strong><small>whenever I’m with you</small></div>
+                <div class="memory"><div class="emoji">💗</div><strong>Forever</strong><small>still to look forward to</small></div>
+            </section>
+
+            <section class="date-form" id="dateFormSection">
+                <div class="heading">
+                    <div class="section-kicker">One more question</div>
+                    <h2>Will you go on a date with me?</h2>
+                    <p>Choose when you’re free and what your heart—or your tummy—wants.</p>
+                </div>
+
+                <form id="dateForm">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="availability">Are you available?</label>
+                            <select id="availability" required>
+                                <option value="">Choose your answer…</option>
+                                <option value="Yes, absolutely! 💕">Yes, absolutely! 💕</option>
+                                <option value="Yes, but let’s choose the best time">Yes, but let’s choose the best time</option>
+                                <option value="Surprise me, Jhon ✨">Surprise me, Jhon ✨</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="date">Your preferred date</label>
+                            <input id="date" type="date" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="time">Best time</label>
+                            <select id="time" required>
+                                <option value="">Choose a time…</option>
+                                <option>Breakfast date ☀️</option>
+                                <option>Lunch date 🌤️</option>
+                                <option>Afternoon date 🌸</option>
+                                <option>Dinner date 🌙</option>
+                                <option>Late-night date ✨</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="place">Date style</label>
+                            <select id="place" required>
+                                <option value="">Pick our vibe…</option>
+                                <option>Romantic restaurant 🕯️</option>
+                                <option>Cozy café ☕</option>
+                                <option>Movie and dinner 🎬</option>
+                                <option>Road trip and food adventure 🚗</option>
+                                <option>Stay-at-home date 🏠</option>
+                                <option>Surprise me, Jhon 🎁</option>
+                            </select>
+                        </div>
+
+                        <div class="full">
+                            <span class="food-label">What would you love to eat?</span>
+                            <div class="food-grid">
+                                <div class="food-option">
+                                    <input type="radio" name="food" id="food1" value="Samgyupsal / Korean food 🥩" required>
+                                    <label for="food1"><span>🥩</span><b>Samgyupsal</b></label>
+                                </div>
+                                <div class="food-option">
+                                    <input type="radio" name="food" id="food2" value="Japanese food / Sushi 🍣">
+                                    <label for="food2"><span>🍣</span><b>Japanese</b></label>
+                                </div>
+                                <div class="food-option">
+                                    <input type="radio" name="food" id="food3" value="Italian / Pizza and pasta 🍝">
+                                    <label for="food3"><span>🍝</span><b>Italian</b></label>
+                                </div>
+                                <div class="food-option">
+                                    <input type="radio" name="food" id="food4" value="Filipino comfort food 🍲">
+                                    <label for="food4"><span>🍲</span><b>Filipino</b></label>
+                                </div>
+                                <div class="food-option">
+                                    <input type="radio" name="food" id="food5" value="Steak or buffet 🥂">
+                                    <label for="food5"><span>🥂</span><b>Steak / Buffet</b></label>
+                                </div>
+                                <div class="food-option">
+                                    <input type="radio" name="food" id="food6" value="Surprise me! 💝">
+                                    <label for="food6"><span>💝</span><b>Surprise Me</b></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field full">
+                            <label for="message">A little message for me (optional)</label>
+                            <textarea id="message" placeholder="Tell me anything, my Princess…"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button type="button" class="secondary-btn" onclick="scrollToLetter()">Read the letter again</button>
+                        <button type="submit" class="primary-btn">Prepare my answer for Jhon ♥</button>
+                    </div>
+                    <p class="form-note">Your answer stays saved on this device. You can email it to Jhon on the next screen.</p>
+                </form>
+            </section>
+        </article>
+    </section>
+
+    <section class="screen" id="successScreen">
+        <div class="success-card">
+            <div class="success-icon">💌</div>
+            <div class="section-kicker">It’s a date</div>
+            <h2>You just made me very happy!</h2>
+            <p>Thank you, Princess. After seven years, I still get excited knowing I get to spend another beautiful day with you. Tap the button below to email your answer to Jhon.</p>
+
+            <div class="summary" id="answerSummary"></div>
+
+            <div class="actions">
+                <button class="secondary-btn" type="button" onclick="editAnswer()">Edit answer</button>
+                <button class="primary-btn" type="button" onclick="emailAnswer()">Email my answer to Jhon ♥</button>
+            </div>
+        </div>
+    </section>
+</main>
 
 <audio id="bgMusic" loop preload="auto" playsinline>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<button class="music-btn" id="musicBtn" type="button" aria-label="Play or pause music">♫ Play our song</button>
+
 <script>
+const LOGIN_USER = "Princess";
+const LOGIN_PASS = "072019";
+const RESULT_EMAIL = "jhonjoednungay@gmail.com";
+
+const loginScreen = document.getElementById("loginScreen");
+const invitationScreen = document.getElementById("invitationScreen");
+const successScreen = document.getElementById("successScreen");
+const loginForm = document.getElementById("loginForm");
+const dateForm = document.getElementById("dateForm");
+const loginError = document.getElementById("loginError");
+const loginPanel = document.getElementById("loginPanel");
 const music = document.getElementById("bgMusic");
-music.volume = 0.6;
+const musicBtn = document.getElementById("musicBtn");
 
-/* Create Music Button */
-const musicBtn = document.createElement("button");
-musicBtn.innerText = "🎵 Play Music";
-musicBtn.style.position = "fixed";
-musicBtn.style.bottom = "20px";
-musicBtn.style.right = "20px";
-musicBtn.style.padding = "10px 20px";
-musicBtn.style.border = "none";
-musicBtn.style.borderRadius = "30px";
-musicBtn.style.background = "white";
-musicBtn.style.color = "#ff4e8a";
-musicBtn.style.fontWeight = "600";
-musicBtn.style.cursor = "pointer";
-musicBtn.style.boxShadow = "0 5px 15px rgba(0,0,0,0.2)";
-musicBtn.style.zIndex = "999";
+music.volume = 0.55;
 
-document.body.appendChild(musicBtn);
+function showScreen(screen){
+    [loginScreen, invitationScreen, successScreen].forEach(item => item.classList.remove("active"));
+    screen.classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+}
 
-musicBtn.addEventListener("click", async function(){
-    try {
-        await music.play();
-        musicBtn.innerText = "🎵 Playing...";
-    } catch (error) {
-        alert("Tap again to enable sound ❤️");
+loginForm.addEventListener("submit", async event => {
+    event.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+
+    if(username.toLowerCase() === LOGIN_USER.toLowerCase() && password === LOGIN_PASS){
+        loginError.textContent = "";
+        showScreen(invitationScreen);
+        try{
+            await music.play();
+            musicBtn.textContent = "❚❚ Pause music";
+        }catch(error){
+            musicBtn.textContent = "♫ Play our song";
+        }
+    }else{
+        loginError.textContent = "That secret doesn’t match, my Princess. Try our special date. ♥";
+        loginPanel.classList.remove("shake");
+        void loginPanel.offsetWidth;
+        loginPanel.classList.add("shake");
     }
 });
 
-/* YES button */
-function sayYes(){
-    document.querySelector(".card").innerHTML = `
-        <h1>Yay!!! ❤️</h1>
-        <p>
-        No grand promises.  
-        No dramatic speeches.  
-        Just me, choosing you — every single day.
-        </p>
-        <p style="margin-top:15px;">
-        Princess & Jhon 💕 Forever Valentine
-        </p>
+musicBtn.addEventListener("click", async () => {
+    if(music.paused){
+        try{
+            await music.play();
+            musicBtn.textContent = "❚❚ Pause music";
+        }catch(error){
+            musicBtn.textContent = "Tap again to play ♥";
+        }
+    }else{
+        music.pause();
+        musicBtn.textContent = "♫ Play our song";
+    }
+});
+
+function formatDate(value){
+    const selected = new Date(value + "T00:00:00");
+    return selected.toLocaleDateString("en-PH",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+}
+
+function getAnswer(){
+    const food = document.querySelector('input[name="food"]:checked');
+    return {
+        availability:document.getElementById("availability").value,
+        date:document.getElementById("date").value,
+        time:document.getElementById("time").value,
+        place:document.getElementById("place").value,
+        food:food ? food.value : "",
+        message:document.getElementById("message").value.trim()
+    };
+}
+
+function answerText(answer){
+    return [
+        "Princess said YES to our anniversary date! ❤️",
+        "",
+        "Availability: " + answer.availability,
+        "Date: " + formatDate(answer.date),
+        "Time: " + answer.time,
+        "Date style: " + answer.place,
+        "Food: " + answer.food,
+        answer.message ? "Message: " + answer.message : "",
+        "",
+        "Seven years and still choosing us. 💕"
+    ].filter(Boolean).join("\n");
+}
+
+function renderSummary(answer){
+    const safe = value => {
+        const temp = document.createElement("div");
+        temp.textContent = value;
+        return temp.innerHTML;
+    };
+
+    document.getElementById("answerSummary").innerHTML = `
+        <div><strong>Availability:</strong> ${safe(answer.availability)}</div>
+        <div><strong>Date:</strong> ${safe(formatDate(answer.date))}</div>
+        <div><strong>Time:</strong> ${safe(answer.time)}</div>
+        <div><strong>Our date:</strong> ${safe(answer.place)}</div>
+        <div><strong>Food:</strong> ${safe(answer.food)}</div>
+        ${answer.message ? `<div><strong>Message:</strong> “${safe(answer.message)}”</div>` : ""}
     `;
 }
 
-/* No button run away */
-const noBtn = document.getElementById("noBtn");
+dateForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const answer = getAnswer();
+    localStorage.setItem("princessAnniversaryAnswer",JSON.stringify(answer));
+    renderSummary(answer);
+    showScreen(successScreen);
+    celebrate();
+});
 
-if(noBtn){
-    noBtn.addEventListener("mouseover", function(){
-        noBtn.style.top = Math.random() * 250 + "px";
-        noBtn.style.left = Math.random() * 250 + "px";
-    });
+function emailAnswer(){
+    const answer = getAnswer();
+    const subject = "Princess’ Answer — Our 7th Anniversary Date ❤️";
+    const body = answerText(answer);
+    const mailto = `mailto:${RESULT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
 }
 
-/* Floating hearts */
-setInterval(() => {
+function editAnswer(){
+    showScreen(invitationScreen);
+    setTimeout(() => document.getElementById("dateFormSection").scrollIntoView({behavior:"smooth"}),100);
+}
+
+function scrollToLetter(){
+    document.querySelector(".letter").scrollIntoView({behavior:"smooth"});
+}
+
+function restoreSavedAnswer(){
+    try{
+        const saved = JSON.parse(localStorage.getItem("princessAnniversaryAnswer"));
+        if(!saved) return;
+
+        document.getElementById("availability").value = saved.availability || "";
+        document.getElementById("date").value = saved.date || "";
+        document.getElementById("time").value = saved.time || "";
+        document.getElementById("place").value = saved.place || "";
+        document.getElementById("message").value = saved.message || "";
+
+        const foods = document.querySelectorAll('input[name="food"]');
+        foods.forEach(food => food.checked = food.value === saved.food);
+    }catch(error){
+        localStorage.removeItem("princessAnniversaryAnswer");
+    }
+}
+
+function makeHeart(){
     const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
+    heart.className = "heart";
+    heart.textContent = Math.random() > .25 ? "♥" : "♡";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    heart.style.fontSize = (12 + Math.random() * 22) + "px";
+    heart.style.animationDuration = (5 + Math.random() * 5) + "s";
     document.body.appendChild(heart);
+    setTimeout(() => heart.remove(),10000);
+}
 
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
-}, 500);
+function celebrate(){
+    for(let i=0;i<24;i++){
+        setTimeout(makeHeart,i * 90);
+    }
+}
+
+setInterval(makeHeart,900);
+restoreSavedAnswer();
 </script>
-
 </body>
 </html>
